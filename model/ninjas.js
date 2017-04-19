@@ -4,6 +4,13 @@ const Schema = mongoose.Schema
 
 //Create ninja schema model
 
+const GeoSchema = new Schema({
+
+	type:{
+		type :  
+	}
+})
+
 const ninjaSchema = new Schema({
 	name: {
 		type : String,
