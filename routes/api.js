@@ -20,15 +20,21 @@ router.post('/ninjas', function(req , res , next){
 
 router.put('/ninjas/:id', function(req , res,next){
 
-	console.log(req.body)
-	res.send({type: "put"})
-
+	ninja.findByIdAndUpdate({_id:req.params.id}).then(function(){
+		console.log('updated')
+		ninja.findOne({_id:req.params.id}).then(function(ninja){
+			console.log(ninja)
+			res.send(ninja)
+		})
+	})
 
 })
 
 router.delete('/ninjas/:id', function(req , res,next){
 
-	res.send({type: "delete"})
+	ninja.findByIdAndRemove({_id:req.params.id}).then(function(ninja){
+		res.send(ninja)
+	})
 
 })
 
