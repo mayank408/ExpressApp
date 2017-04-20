@@ -7,8 +7,14 @@ const Schema = mongoose.Schema
 const GeoSchema = new Schema({
 
 	type:{
-		type :  
+		type : String,
+		default : "Point"
+	},
+	coordinates:{
+		type: [Number],
+		index: "2dsphere"
 	}
+
 })
 
 const ninjaSchema = new Schema({
@@ -23,7 +29,8 @@ const ninjaSchema = new Schema({
 	available: {
 		type: Boolean,
 		default : false
-	}
+	},
+	geometry : GeoSchema
 })
 
 const ninja = mongoose.model('ninja' , ninjaSchema)

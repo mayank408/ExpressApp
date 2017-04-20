@@ -5,7 +5,12 @@ const ninja = require('../model/ninjas')
 router.get('/ninjas', function(req , res ,next){
 
 	//next means move on to next middleware
-	res.send({type: "get"})
+	ninja.geoNear(
+		{type:"Point" , coordinates : [req.query.lan , req.query.log]},
+		{maxDistance : 100000 , spherical : true}
+	).then(function(ninja){
+		res.send(ninja)
+	})
 
 })
 
